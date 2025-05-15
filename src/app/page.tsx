@@ -1,3 +1,5 @@
+'use client'
+
 import courses from '@/data/courses.json'
 import { useUser } from '@/context/UserContext'
 import Link from 'next/link'
