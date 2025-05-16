@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Film } from 'lucide-react'
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -12,18 +13,22 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="bg-white shadow sticky top-0 z-50">
+    <header className="bg-white shadow shadow-violet-200 sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <h1 className="text-xl font-bold">Plataforma de Cursos</h1>
+        <div className='flex gap-3 items-center' >
+          <Film />
+          <h1 className="text-xl font-bold">Plataforma de Cursos</h1>
+        </div>
+        
         <ul className="flex space-x-6">
           {navItems.map(item => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`text-sm font-medium ${
+                className={`text-sm ${
                   pathname === item.href
-                    ? 'text-blue-600 underline'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? 'text-violet-700 underline font-bold'
+                    : 'text-gray-600 hover:text-violet-700'
                 }`}
               >
                 {item.label}
