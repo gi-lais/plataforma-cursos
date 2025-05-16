@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Heart, HeartOff } from 'lucide-react'
+import { toast } from 'sonner'
 
 interface FavoriteButtonProps {
   courseId: number
@@ -24,9 +25,11 @@ export default function FavoriteButton({ courseId }: FavoriteButtonProps) {
     if (favorites.includes(courseId)) {
       updatedFavorites = favorites.filter(id => id !== courseId)
       setIsFavorite(false)
+      toast.success('Curso removido dos favoritos')
     } else {
       updatedFavorites = [...favorites, courseId]
       setIsFavorite(true)
+      toast.success('Curso adicionado aos favoritos')
     }
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
