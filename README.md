@@ -44,7 +44,7 @@ npm run test
 ## 🚀 Deploy
 Deploy realizado com Vercel:
 
-🔗 Acesse aqui: https://plataforma-cursos.vercel.app
+🔗 Acesse aqui: https://plataforma-cursos-a751.vercel.app/
 
 ## 🧑‍💻 Autor
 - Desenvolvido por Giovanna Laís 
