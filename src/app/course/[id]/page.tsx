@@ -20,5 +20,5 @@ export default function CoursePage({ params }: Props) {
 
   return hasCourse(courseId)
     ? <CoursePlayer title={course.title} description={course.description}/>
-    : <CoursePreview title={course.title} description={course.description} price={course.price} created_at={course.created_at}/>
+    : <CoursePreview id={course.id} title={course.title} description={course.description} price={course.price} created_at={course.created_at}/>
 }

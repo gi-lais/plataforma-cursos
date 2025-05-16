@@ -1,19 +1,43 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Heart, HeartOff } from 'lucide-react' 
 
 interface CoursePreviewProps {
+  id: number
   title: string
   description: string
   price: number
   created_at: string
 }
 
-export function CoursePreview({ title, description, price, created_at }: CoursePreviewProps) {
+export function CoursePreview({ id, title, description, price, created_at }: CoursePreviewProps) {
   const [isFavorited, setIsFavorited] = useState(false)
 
-  const toggleFavorite = () => setIsFavorited(prev => !prev)
+  useEffect(() => {
+    const stored = localStorage.getItem('favorites')
+    if(stored){
+      const favorites = JSON.parse(stored) as number[];
+      setIsFavorited(favorites.includes(id));
+    }
+  }, [id])
+
+  const toggleFavorite = () => {
+    const stored = localStorage.getItem('favorites')
+    const favorites = stored ? JSON.parse(stored) as number[] : []
+
+    let updatedFavorites: number[]
+    if (favorites.includes(id)) {
+      updatedFavorites = favorites.filter(favId => favId !== id)
+      setIsFavorited(false)
+    } else {
+      updatedFavorites = [...favorites, id]
+      setIsFavorited(true)
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
+  }
+
 
   return (
     <div className="p-8 max-w-4xl mx-auto mt-10 bg-white rounded-2xl shadow-md border border-gray-200 relative">
@@ -44,7 +68,7 @@ export function CoursePreview({ title, description, price, created_at }: CourseP
         
         </div>
 
-        <button className="bg-violet-600 text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-violet-700 transition">
+        <button className="bg-violet-500 text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-violet-700 transition">
           Comprar Curso
         </button>
       </div>
