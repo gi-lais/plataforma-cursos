@@ -11,7 +11,7 @@ export function CoursePlayer({ title, description}: CoursePlayerProps) {
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
       <p className="text-gray-700 mb-4">{description}</p>
         
-      <video className="w-full rounded-xl" controls>
+      <video className="w-full rounded-xl" controls data-testid="video">
         <source src="/video-placeholder.mp4" type="video/mp4" />
         Seu navegador não suporta vídeos.
       </video>
