@@ -12,13 +12,13 @@ interface CoursePreviewProps {
 }
 
 export function CoursePreview({ id, title, description, price, created_at }: CoursePreviewProps) {
-  const [isFavorited, setIsFavorited] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false)
 
   useEffect(() => {
     const stored = localStorage.getItem('favorites')
     if(stored){
       const favorites = JSON.parse(stored) as number[];
-      setIsFavorited(favorites.includes(id));
+      setIsFavorite(favorites.includes(id));
     }
   }, [id])
 
@@ -29,10 +29,10 @@ export function CoursePreview({ id, title, description, price, created_at }: Cou
     let updatedFavorites: number[]
     if (favorites.includes(id)) {
       updatedFavorites = favorites.filter(favId => favId !== id)
-      setIsFavorited(false)
+      setIsFavorite(false)
     } else {
       updatedFavorites = [...favorites, id]
-      setIsFavorited(true)
+      setIsFavorite(true)
     }
 
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites))
@@ -45,9 +45,9 @@ export function CoursePreview({ id, title, description, price, created_at }: Cou
       <button
         onClick={toggleFavorite}
         className="absolute top-4 right-4 text-gray-400 hover:text-red-500 transition"
-        aria-label="Toggle Favorite"
+        aria-label={isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
       >
-        {isFavorited ? <Heart className="fill-red-500 text-red-500" /> : <HeartOff />}
+        {isFavorite ? <Heart className="fill-red-500 text-red-500" /> : <HeartOff />}
       </button>
 
       <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">
