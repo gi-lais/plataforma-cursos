@@ -15,10 +15,10 @@ export default function Header() {
   return (
     <header className="bg-white shadow shadow-violet-200 sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-        <div className='flex gap-3 items-center' >
-          <Film />
-          <h1 className="text-xl font-bold">Plataforma de Cursos</h1>
-        </div>
+        <Link href="/" className="flex gap-3 items-center">
+          <Film className="w-6 h-6 text-violet-600" />
+          <h1 className="text-xl font-bold text-gray-900">Plataforma de Cursos</h1>
+        </Link>
         
         <ul className="flex space-x-6">
           {navItems.map(item => (
